@@ -68,3 +68,39 @@ function findOutlier(arr){
 }
 
 //5 - Counting Duplicates
+function duplicateCount(text){
+  const obj = {}
+  text = text.toLowerCase()
+  
+  //make an object containing the letters corresponding to the occurances
+  for(let letter of text){
+    if(letter in obj){
+      obj[letter]++
+    }else{
+      obj[letter] = 0
+    }
+  }
+  
+  //filter out the ones with no occurances
+  Object.keys(obj).forEach(key => {
+    if(!obj[key]) delete obj[key];
+  });
+
+  //return the length of the objects.keys(obj)
+  return Object.keys(obj).length 
+}
+
+//6 - Moving Zeroes To The End
+function moveZeros(arr) {
+  //return the arr with no zeros in it plus (.concat) an array with all the zeros if ther were any
+  return arr.filter(ele => ele !== 0).concat(arr.filter( ele => ele === 0))
+}
+
+//7 - Simple Pig Latin
+function pigIt(str){
+  //replace:
+  //the first letter/digit of a word boundary + the rest of the it until a word boundary
+  //with:
+  //the rest of it until a word boundary + the first letter/digit of a word boundary + ay
+  return str.replace(/\b([\w|\d])([\w|\d]*)/g, '$2$1ay')
+}
